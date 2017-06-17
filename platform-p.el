@@ -19,19 +19,14 @@
 
 (defun x->bool (elt) (not (not elt)))
 
-;; emacs-version predicates
-(setq emacs-version-22-p (string-match "^22" emacs-version)
-      emacs-version-23-p (string-match "^23" emacs-version)
-      emacs-version-24-or-later-p (or (string-match "^2[4-9]" emacs-version)
-                                      (string-match "^[3-9]" emacs-version))
-      emacs-version-24.4-or-later-p (when emacs-version-24-or-later-p
-                                      (not (string-match "^24\.[0-3]" emacs-version))))
+;; emacs-version number
+(setq emacs-version-float (string-to-number emacs-version))
 
 ;; system-type predicates
 (setq platform-gui-p     (display-graphic-p)
       platform-darwin-p  (eq system-type 'darwin)
       platform-ns-p      (eq window-system 'ns)
-      platform-carbon-p  (eq window-system 'mac)
+      platform-macport-p  (eq window-system 'mac)
       platform-linux-p   (eq system-type 'gnu/linux)
       platform-colinux-p (when platform-linux-p
                            (let ((file "/proc/modules"))
